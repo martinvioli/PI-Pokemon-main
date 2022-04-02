@@ -34,5 +34,9 @@ module.exports = (sequelize) => {
     Peso: {
       type: DataTypes.INTEGER,
     },
+    Imagen: {
+      type: DataTypes.STRING,
+      defaultValue: "https://www.pngmart.com/files/2/Pokeball-PNG-Photos.png",
+    },
   });
 };

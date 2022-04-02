@@ -33,7 +33,7 @@ export function Landing(props) {
   return (
     <>
       <div id="cards">
-        {props.pokemons ? (
+        {props.pokemons.length > 0 ? (
           props.pokemons.slice(showPokes, showPokes + 12).map((e) => (
             <div className="card">
               {e.Imagen ? (
@@ -49,6 +49,16 @@ export function Landing(props) {
                 <span>
                   {e.Tipos[0].Nombre} {e.Tipos[1] ? e.Tipos[1].Nombre : null}
                 </span>
+                {e.ID ? (
+                  <Link to={`/app/pokemondetail/${e.ID}`}>
+                    <input type="button" value="Ver detalles"></input>
+                  </Link>
+                ) : (
+                  <input
+                    type="button"
+                    value="Generando link de detalles..."
+                  ></input>
+                )}
               </div>
             </div>
           ))
@@ -56,10 +66,12 @@ export function Landing(props) {
           <div id="loader"></div>
         )}
       </div>
-      <div id="buttons">
-        <button onClick={() => paginatorLess()}>Prev page</button>
-        <button onClick={() => paginatorAdd()}>Next page</button>
-      </div>
+      {props.pokemons.length > 12 ? (
+        <div id="buttons">
+          <button onClick={() => paginatorLess()}>Prev page</button>
+          <button onClick={() => paginatorAdd()}>Next page</button>
+        </div>
+      ) : null}
     </>
   );
 }

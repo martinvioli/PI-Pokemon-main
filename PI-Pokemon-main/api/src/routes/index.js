@@ -39,7 +39,7 @@ router.get("/pokemons/:id", async function (req, res) {
       );
       var dataAPIdata = await dataAPI.data;
       await InfoCleaner(dataAPIdata, arrayClean);
-      res.send(arrayClean);
+      res.send(arrayClean[0]);
     } catch (error) {
       // En caso de que no exista ese ID en pokeapi
       res.send("Pokemon inexistente!");
