@@ -1,0 +1,24 @@
+#navBar {
+  display: flex;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  padding: 0.3em;
+  align-items: center;
+}
+
+#navBar > nav {
+  padding-left: 1em;
+  width: 15em;
+  display: flex;
+  justify-content: space-around;
+}
+
+#navBar > img {
+  width: 40px;
+  height: 40px;
+}
