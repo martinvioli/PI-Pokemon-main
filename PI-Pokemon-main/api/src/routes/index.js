@@ -13,7 +13,7 @@ function InfoCleaner(data, array) {
   var { name, id, height, weight, sprites, stats, types } = data;
   array.push({
     ID: id,
-    Nombre: name,
+    Nombre: name.toUpperCase(),
     Vida: stats[0].base_stat,
     Fuerza: stats[1].base_stat,
     Defensa: stats[2].base_stat,
@@ -21,8 +21,8 @@ function InfoCleaner(data, array) {
     Altura: height,
     Peso: weight,
     Tipos: [
-      { Nombre: types[0].type.name },
-      types[1] ? { Nombre: types[1]?.type.name } : null,
+      { Nombre: types[0].type.name.toUpperCase() },
+      types[1] ? { Nombre: types[1]?.type.name.toUpperCase() } : null,
     ],
     Imagen: sprites.other.home.front_default,
   });
@@ -80,7 +80,7 @@ router.get("/pokemons", async function (req, res) {
       );
       var dataAPIdata = await dataAPI.data;
       await InfoCleaner(dataAPIdata, arrayClean);
-      res.send(arrayClean);
+      return res.send(arrayClean[0]);
     } catch (error) {
       var ownDB = await Pokemon.findOne({
         // LO LLEVO A MAYUSCULA PARA USAR MI ESTANDAR PERO QUE EL USUARIO PUEDA BUSCAR EN MAYUS O MINUS.
@@ -97,7 +97,7 @@ router.get("/pokemons", async function (req, res) {
       });
       // SI ENCUENTRA EN LA DB LO MANDA
       if (ownDB !== null) {
-        res.send(ownDB);
+        return res.send(ownDB);
       }
       // SI NO ENCUENTRA EN LA DB NI EN LA POKEAPI, ENVIA ERROR.
       res.send("No existe ese pokemon!.");
@@ -125,7 +125,7 @@ router.get("/pokemons", async function (req, res) {
       },
     });
     // SEND de ambas juntas
-    res.send(arrayClean.concat(ownDB));
+    return res.send(arrayClean.concat(ownDB));
   }
 });
 

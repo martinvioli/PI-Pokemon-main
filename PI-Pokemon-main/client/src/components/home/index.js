@@ -13,14 +13,15 @@ export default function Home() {
           alt="pikachuLoader"
         ></img>
         <div id="button">
+          {/* AL APRETAR EL BOTON EL REACT ROUTER ME MANDA A APP/LANDING */}
           <Link
             to="/app/landing"
             style={{ textDecoration: "none", color: "black" }}
           >
-            Ingresar
+            GO!
           </Link>
         </div>
-        <h3 id="credits">Proyecto individual creado por Martin V. 🚀</h3>
+        <h3 id="credits">INDIVIDUAL PROJECT MADE BY M.V. 🚀</h3>
       </body>
     </>
   );

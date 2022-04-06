@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import styles from "./styles.css";
 import { addPokemon, loadTypesAsync } from "../../redux/actions";
+import { Link } from "react-router-dom";
 
 export function Creator(props) {
   // Cargo los tipos ni bien renderizo la pagina.
@@ -18,6 +19,9 @@ export function Creator(props) {
     Peso: null,
     Tipos: [],
   });
+
+  // Estado para avisar si se creo el pokemon y poder visualizar una alerta de creacion exitosa.
+  let [completed, setCompleted] = useState(false);
 
   //Regexp para admitir solo letras y espacios
   const [regexpNombre, setRegExpNom] = useState(/^[a-zA-Z\s]+$/);
@@ -43,94 +47,111 @@ export function Creator(props) {
   }
 
   return (
-    <>
+    <div className="container">
       {
         // Verifico que la pokedex este cargada. Sino, obligo al usuario a cargarla, ya que es necesaria para luego crear y detectarlos correctamente.
         props.pokemons.length > 0 ? (
           <form onSubmit={(event) => handleSumbit(event)}>
-            <label htmlFor="Nombre">Nombre del pokemon:</label>
+            <label htmlFor="Name">Pokemon Name:</label>
             <input
               type="text"
-              name="Nombre"
+              name="Name"
               value={state.Nombre}
               onChange={(e) =>
-                setState({ ...state, Nombre: e.target.value.toString() })
+                setState({
+                  ...state,
+                  Nombre: e.target.value.toString().toUpperCase(),
+                })
               }
             ></input>
+            {/* VERIFICADOR PARA SABER SI EL NOMBRE YA ESTA EN USO */}
             {props.pokemons.every(
               (e) => e.Nombre.toUpperCase() != state.Nombre?.toUpperCase()
             ) ? null : (
-              <span>El nombre ya esta en uso.</span>
+              <span className="alertText">This name is already in use.</span>
             )}
-            <span>
-              Solo letras y espacios. No se admiten simbolos ni numeros.
+            <span className="conditionText">
+              Only letters and spaces are allowed here. No numbers and no
+              symbols.
             </span>
-            <label htmlFor="Vida">Vida:</label>
+            <label htmlFor="HP">HP:</label>
             <input
               type="number"
               max="100"
-              name="Vida"
+              name="HP"
               value={state.Vida}
               onChange={(e) =>
                 // LE HAGO TOSTRING() A CADA NUMERO PARA QUE EL REGEXP FUNCIONE CORRECTAMENTE Y DETECTE SIMBOLOS.
                 setState({ ...state, Vida: e.target.value.toString() })
               }
             ></input>
-            <span>Solo numeros del 1 al 99</span>
-            <label htmlFor="Fuerza">Fuerza:</label>
+            <span className="conditionText">
+              Only numbers from 1 to 99 inclusive.
+            </span>
+            <label htmlFor="Strength">Strength:</label>
             <input
               type="number"
-              name="Fuerza"
+              name="Strength"
               value={state.Fuerza}
               onChange={(e) =>
                 setState({ ...state, Fuerza: e.target.value.toString() })
               }
             ></input>
-            <span>Solo numeros del 1 al 99</span>
-            <label htmlFor="Defensa">Defensa:</label>
+            <span className="conditionText">
+              Only numbers from 1 to 99 inclusive.
+            </span>
+            <label htmlFor="Deffense">Deffense:</label>
             <input
               type="number"
-              name="Defensa"
+              name="Deffense"
               value={state.Defensa}
               onChange={(e) =>
                 setState({ ...state, Defensa: e.target.value.toString() })
               }
             ></input>
-            <span>Solo numeros del 1 al 99</span>
-            <label htmlFor="Velocidad">Velocidad:</label>
+            <span className="conditionText">
+              Only numbers from 1 to 99 inclusive.
+            </span>
+            <label htmlFor="Speed">Speed:</label>
             <input
               type="number"
-              name="Velocidad"
+              name="Speed"
               value={state.Velocidad}
               onChange={(e) =>
                 setState({ ...state, Velocidad: e.target.value.toString() })
               }
             ></input>
-            <span>Solo numeros del 1 al 99</span>
-            <label htmlFor="Altura">Altura:</label>
+            <span className="conditionText">
+              Only numbers from 1 to 99 inclusive.
+            </span>
+            <label htmlFor="Height">Height:</label>
             <input
               type="number"
-              name="Altura"
+              name="Height"
               value={state.Altura}
               onChange={(e) =>
                 setState({ ...state, Altura: e.target.value.toString() })
               }
             ></input>
-            <span>Solo numeros del 1 al 99</span>
-            <label htmlFor="Peso">Peso:</label>
+            <span className="conditionText">
+              Only numbers from 1 to 99 inclusive.
+            </span>
+            <label htmlFor="Weight">Weight:</label>
             <input
               type="number"
-              name="Peso"
+              name="Weight"
               value={state.Peso}
               onChange={(e) =>
                 setState({ ...state, Peso: e.target.value.toString() })
               }
             ></input>
-            <span>Solo numeros del 1 al 99</span>
-            <label htmlFor="Tipos">Tipos:</label>
+            <span className="conditionText">
+              Only numbers from 1 to 99 inclusive.
+            </span>
+            <label htmlFor="Types">Types:</label>
             <select
               defaultValue="default"
-              name="Tipos"
+              name="Types"
               onChange={(e) =>
                 setState({
                   ...state,
@@ -142,7 +163,7 @@ export function Creator(props) {
               <option disabled={true} value="default">
                 {
                   // RENDERIZO UNA OPCION INELEGIBLE Y DEFAULT QUE ME SIRVE TANTO PARA CUANDO CARGAN LOS TIPOS, COMO PARA CUANDO OBLIGO AL USUARIO A ELEGIR UNO.
-                  props.types ? "Elige un tipo..." : "Cargando tipos..."
+                  props.types ? "Choose a type..." : "Loading types..."
                 }
               </option>
               {props.types
@@ -157,7 +178,7 @@ export function Creator(props) {
             {state.Tipos[0] ? (
               <select
                 defaultValue="default"
-                name="Tipos"
+                name="Types"
                 onChange={(e) =>
                   setState({
                     ...state,
@@ -169,21 +190,28 @@ export function Creator(props) {
                 <option disabled={true} value="default">
                   {
                     // RENDERIZO UNA OPCION INELEGIBLE Y DEFAULT QUE ME SIRVE TANTO PARA CUANDO CARGAN LOS TIPOS, COMO PARA CUANDO OBLIGO AL USUARIO A ELEGIR UNO. EN ESTE CASO AL SER TIPO 2 TAMBIEN GENERO UNA OPCION DE SIN TIPO 2 POR SI EL USUARIO SE ARREPIENTE Y NO QUIERE 2DO TIPO.
-                    props.types ? "Elige un tipo..." : "Cargando tipos..."
+                    props.types ? "Choose another type..." : "Loading types..."
                   }
                 </option>
-                <option value="null">Sin tipo 2.</option>
+                <option value="null">NO SECOND TYPE.</option>
                 {props.types
-                  ? props.types.map((e) => (
-                      // En value guardo en forma de string los datos de cada tipo, con nombre y ID para luego poder hacer tanto el post como el refresh del state.
-                      <option value={`{"ID":"${e.ID}","Nombre":"${e.Nombre}"}`}>
-                        {e.Nombre}
-                      </option>
-                    ))
+                  ? props.types
+                      //FILTRO PARA QUE ME SAQUE DE LAS OPCIONES AL TIPO QUE ELIGIO EL USUARIO EN TIPO[0], YA QUE UN POKEMON NO PUEDE TENER 2 TIPOS IGUALES.
+                      .filter((x) => x.Nombre !== state.Tipos[0].Nombre)
+                      .map((e) => (
+                        // En value guardo en forma de string los datos de cada tipo, con nombre y ID para luego poder hacer tanto el post como el refresh del state.
+                        <option
+                          value={`{"ID":"${e.ID}","Nombre":"${e.Nombre}"}`}
+                        >
+                          {e.Nombre}
+                        </option>
+                      ))
                   : null}
               </select>
             ) : null}
-            <span>Debes elegir al menos 1 tipo.</span>
+            <span className="conditionText">
+              You must choose at least one type.
+            </span>
             {
               // Verifico que todos los input esten almenos completados, includo el primer tipo el cual es OBLIGATORIO.
               Object.values(state)
@@ -198,20 +226,35 @@ export function Creator(props) {
                   .map((e) => regexpNumeros.test(e))
                   .every((e) => e) ? (
                   // Si todo esta OK, habilito el boton de sumbit.
-                  <input type="submit" value="Agregar pokemon!"></input>
+                  <input
+                    type="submit"
+                    value="ADD POKEMON!"
+                    onClick={() => {
+                      setCompleted((completed = true));
+                      setTimeout(() => setCompleted((completed = false)), 2000);
+                    }}
+                  ></input>
                 ) : (
                   // Si mi regex detecta errores, no habilito el boton de sumbit hasta que el usuario los arregle.
-                  <p>Completa correctamente todos los campos porfavor!.</p>
+                  <p className="alertText">
+                    Please, complete all the inputs correctly!.
+                  </p>
                 )
               ) : // Si faltan completar campos no renderizo el boton de sumbit porque asumo que el usuario aun esta completando los campos.
               null
             }
+            {completed ? (
+              <p>The new Pokemon was added succesfully. Congratulations!.</p>
+            ) : null}
           </form>
         ) : (
-          <h1> Error: antes de crear un pokemon debes cargar la pokedex!.</h1>
+          <h1>
+            {" "}
+            ERROR: Before creating a new Pokemon, you must load the Pokedex!.
+          </h1>
         )
       }
-    </>
+    </div>
   );
 }
 

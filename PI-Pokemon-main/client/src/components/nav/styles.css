@@ -1,14 +1,31 @@
 #navBar {
   display: flex;
-  background: rgb(131, 58, 180);
-  background: linear-gradient(
-    90deg,
-    rgba(131, 58, 180, 1) 0%,
-    rgba(253, 29, 29, 1) 50%,
-    rgba(252, 176, 69, 1) 100%
-  );
+  background-color: rgb(78, 136, 163);
   padding: 0.3em;
   align-items: center;
+  font-weight: 600;
+}
+
+#input {
+  position: absolute;
+  right: 2em;
+  height: 1.5em;
+}
+
+#goButton {
+  background-color: rgb(153, 60, 60);
+  color: white;
+  font-weight: 700;
+  border: none;
+  height: 100%;
+  cursor: pointer;
+}
+
+#input > input {
+  border: 2px solid rgb(153, 60, 60);
+  box-sizing: border-box;
+  height: 100%;
+  outline: none;
 }
 
 #navBar > nav {
