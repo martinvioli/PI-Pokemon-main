@@ -69,7 +69,7 @@ export default function PokemonAPP(state = initialState, action) {
   if (action.type === SORT_BYSTRENGTH) {
     //CREO COPIAS PORQUE SINO AL CAMBIAR SOLAMENTE EL ORDEN, REACT NO LO RECONOCE COMO CAMBIO Y ENTONCES NO RE-RENDERIZA.
     var arrStr = [...state.pokemons];
-    var arrFStr = [...state.pokemons];
+    var arrFStr = [...state.pokemonsFiltered];
     if (action.payload === "LM") {
       return {
         ...state,
