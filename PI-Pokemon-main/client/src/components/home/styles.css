@@ -54,17 +54,46 @@
   align-items: center;
 }
 
-#topPB {
-  padding: 0.3em 1em 1em 1em;
+#pokeBall > img {
+  width: 200px;
+  height: 100px;
+}
+
+#pokeBall {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 5em;
-  height: 2em;
-  font-weight: 600;
-  color: rgb(196, 16, 16);
-  border: 2px solid black;
-  background-color: rgb(196, 16, 16);
-  border-top-right-radius: 5rem;
-  border-top-left-radius: 5rem;
+  flex-direction: column;
+}
+
+#topPB {
+  margin-bottom: -4.7em;
+  transition: all 1s;
+  z-index: 2;
+}
+
+#pokeBall:hover > #topPB {
+  margin-bottom: 0em;
+}
+
+#go {
+  text-align: center;
+  font-size: 6vh;
+  font-weight: bold;
+  opacity: 0;
+  transition: all 1s;
+  z-index: 1;
+  color: aliceblue;
+}
+
+#pokeBall:hover > #go {
+  opacity: 100;
+}
+
+#text {
+  text-align: center;
+  padding-bottom: 2em;
+}
+
+#text > h3,
+p {
+  margin: 0;
 }

@@ -6,20 +6,20 @@ export default function Home() {
   return (
     <>
       <body id="selector">
-        <div id="topPB">Ingresar</div>
-        <img
-          id="pikachuRunner"
-          src="https://c.tenor.com/tQVZsHnTSZgAAAAi/pikachu.gif"
-          alt="pikachuLoader"
-        ></img>
-        <div id="button">
-          {/* AL APRETAR EL BOTON EL REACT ROUTER ME MANDA A APP/LANDING */}
-          <Link
-            to="/app/landing"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+        <div id="text">
+          <h1>WELCOME TO THE POKEDEX</h1>
+          <h3>
+            Here you will find all your captured pokemons with every detail you
+            need.
+          </h3>
+          <p>Click on the pokeball below to enter.</p>
+        </div>
+        <div id="pokeBall">
+          <img id="topPB" src="https://i.imgur.com/mUbK715.png"></img>
+          <Link id="go" to="/app/landing" style={{ textDecoration: "none" }}>
             GO!
           </Link>
+          <img id="botPB" src="https://i.imgur.com/w6C5NP1.png"></img>
         </div>
         <h3 id="credits">INDIVIDUAL PROJECT MADE BY M.V. 🚀</h3>
       </body>

@@ -63,7 +63,7 @@ router.get("/pokemons/:id", async function (req, res) {
       res.send(ownDB);
     } catch (error) {
       // En caso de que no exista esa ID en mi db
-      res.send("Pokemon inexistente!");
+      res.status(404).send({ Error: "Not found" });
     }
   }
 });
@@ -100,7 +100,7 @@ router.get("/pokemons", async function (req, res) {
         return res.send(ownDB);
       }
       // SI NO ENCUENTRA EN LA DB NI EN LA POKEAPI, ENVIA ERROR.
-      res.send("No existe ese pokemon!.");
+      res.send({ Error: "not found" });
     }
   } else {
     // Array donde voy a guardar los poke de la api con mi funcion
@@ -125,7 +125,7 @@ router.get("/pokemons", async function (req, res) {
       },
     });
     // SEND de ambas juntas
-    return res.send(arrayClean.concat(ownDB));
+    return res.status(200).send(arrayClean.concat(ownDB));
   }
 });
 

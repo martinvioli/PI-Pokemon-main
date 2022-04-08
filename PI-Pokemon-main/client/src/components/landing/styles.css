@@ -28,7 +28,7 @@
   height: 8em;
   padding: 1em;
   display: flex;
-  background-color: rgb(253, 247, 234);
+  background-color: rgb(246, 246, 246);
   border: 1px solid black;
   justify-content: space-evenly;
   margin: 1em;
@@ -37,7 +37,7 @@
 .card > div {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   font-weight: 700;
 }
 
@@ -54,20 +54,17 @@
 }
 
 .detailsButton {
-  box-shadow: inset 0px 1px 0px 0px #ffffff;
-  background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-  background-color: #f9f9f9;
-  border-radius: 6px;
-  border: 1px solid #dcdcdc;
+  background-color: rgb(58, 58, 58);
+  border-radius: 0.3em;
+  border: none;
   display: inline-block;
   cursor: pointer;
-  color: #666666;
-  font-family: Arial;
-  font-size: 15px;
-  font-weight: bold;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: lighter;
   padding: 6px 24px;
+  max-width: 9em;
   text-decoration: none;
-  text-shadow: 0px 1px 0px #ffffff;
 }
 
 #filters {
@@ -109,4 +106,99 @@
   padding: 0.2em;
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff;
+}
+
+/* ALL TYPES WITH COLOR */
+#GRASS,
+#WATER,
+#NORMAL,
+#FIGHTING,
+#BUG,
+#DARK,
+#DRAGON,
+#FAIRY,
+#FIRE,
+#ROCK,
+#STEEL,
+#GROUND,
+#ICE,
+#PSYCHIC,
+#POISON,
+#GHOST,
+#ELECTRIC,
+#FLYING {
+  color: white;
+  padding: 0.3em;
+  border-radius: 0.2em;
+}
+
+#GRASS {
+  background-color: rgb(13, 149, 13);
+}
+#WATER {
+  background-color: rgb(53, 114, 255);
+}
+
+#NORMAL {
+  background-color: #8f8b72;
+}
+
+#FIGHTING {
+  background-color: #67290a;
+}
+
+#BUG {
+  background-color: #84ac44;
+}
+
+#DARK {
+  background-color: #2a0e00;
+}
+
+#DRAGON {
+  background-color: rgb(81, 42, 255);
+}
+
+#FAIRY {
+  background-color: rgb(246, 147, 228);
+}
+
+#FIRE {
+  background-color: rgb(255, 47, 11);
+}
+
+#ROCK {
+  background-color: #af8b60;
+}
+
+#STEEL {
+  background-color: rgb(134, 117, 117);
+}
+
+#GROUND {
+  background-color: burlywood;
+}
+
+#ICE {
+  background-color: skyblue;
+}
+
+#PSYCHIC {
+  background-color: rgb(251, 55, 88);
+}
+
+#POISON {
+  background-color: rgb(89, 27, 89);
+}
+
+#GHOST {
+  background-color: rgb(45, 35, 93);
+}
+
+#ELECTRIC {
+  background-color: rgb(255, 187, 0);
+}
+
+#FLYING {
+  background-color: rgb(97, 135, 197);
 }

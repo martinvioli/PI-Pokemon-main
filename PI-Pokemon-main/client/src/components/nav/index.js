@@ -12,22 +12,22 @@ export default function Nav(props) {
     <>
       <div id="navBar">
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/769px-Pokebola-pokeball-png-0.png"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/2560px-International_Pok%C3%A9mon_logo.svg.png"
           alt="pokeballLogo"
         />
         <nav>
           {/* LOS LINKS CON STYLE INLINE PROPIO */}
           <Link
             to="/app/landing"
-            style={{ textDecoration: "none", color: "white" }}
+            style={{ textDecoration: "none", color: "black" }}
           >
-            <span>Pokemons</span>
+            <span className="hoverPage">POKEMONS</span>
           </Link>
           <Link
             to="/app/creator"
-            style={{ textDecoration: "none", color: "white" }}
+            style={{ textDecoration: "none", color: "black" }}
           >
-            <span>Creator</span>
+            <span className="hoverPage">CREATOR</span>
           </Link>
         </nav>
         {/* EL INPUT CONTROLADO */}

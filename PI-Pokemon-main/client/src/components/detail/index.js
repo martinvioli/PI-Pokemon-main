@@ -29,48 +29,77 @@ export default function Detail(props) {
     <>
       <div id="container">
         {pokemonDetail ? (
-          <div id="pokeDetailCard">
-            <img src={pokemonDetail.Imagen} alt="pokeImg"></img>
-            <div id="stats">
-              <p>
-                ID: <span>{pokemonDetail.ID}</span>
-              </p>
-              <p>
-                NAME: <span>{pokemonDetail.Nombre}</span>
-              </p>
-              <p>
-                HP: <span>{pokemonDetail.Vida}</span>
-              </p>
-              <p>
-                STRENGTH: <span>{pokemonDetail.Fuerza}</span>
-              </p>
-              <p>
-                DEFFENSE: <span>{pokemonDetail.Defensa}</span>
-              </p>
-              <p>
-                SPEED: <span>{pokemonDetail.Velocidad}</span>
-              </p>
-              <p>
-                HEIGHT: <span>{pokemonDetail.Altura}</span>
-              </p>
-              <p>
-                WEIGHT: <span>{pokemonDetail.Peso}</span>
-              </p>
-              <p>
-                TYPES: <span>{pokemonDetail.Tipos[0].Nombre}</span>{" "}
-                <span>{pokemonDetail.Tipos[1]?.Nombre}</span>
-              </p>
+          // PREGUNTO SI ME LLEGO ERROR O ME LLEGO LA DATA CORRECTA
+          !pokemonDetail.hasOwnProperty("Error") ? (
+            <div id="pokeDetailCard">
+              <p>{pokemonDetail.Nombre}</p>
+              <div id="pokeDetailCardStats">
+                <img src={pokemonDetail.Imagen} alt="pokeImg"></img>
+                <div id="stats">
+                  <p>
+                    ID: <span>{pokemonDetail.ID}</span>
+                  </p>
+                  <hr></hr>
+                  <p>
+                    HP: <span>{pokemonDetail.Vida}</span>
+                  </p>
+                  <p>
+                    STRENGTH: <span>{pokemonDetail.Fuerza}</span>
+                  </p>
+                  <p>
+                    DEFFENSE: <span>{pokemonDetail.Defensa}</span>
+                  </p>
+                  <p>
+                    SPEED: <span>{pokemonDetail.Velocidad}</span>
+                  </p>
+                  <p>
+                    HEIGHT: <span>{pokemonDetail.Altura}</span>
+                  </p>
+                  <p>
+                    WEIGHT: <span>{pokemonDetail.Peso}</span>
+                  </p>
+                  <hr></hr>
+                  <p>
+                    TYPES:{" "}
+                    <span id={pokemonDetail.Tipos[0].Nombre}>
+                      {pokemonDetail.Tipos[0].Nombre}
+                    </span>{" "}
+                    <span id={pokemonDetail.Tipos[1]?.Nombre}>
+                      {pokemonDetail.Tipos[1]?.Nombre}
+                    </span>
+                  </p>
+                </div>
+              </div>
               {/* BOTON PARA VOLVER A LA POKEDEX */}
               <Link to="/app/landing">
-                <button id="backToPokedex">Back to the pokedex</button>
+                <button id="backToPokedex">BACK TO POKEDEX</button>
               </Link>
             </div>
-          </div>
+          ) : (
+            // PANTALLA POR SI ME LLEGO ERROR
+            <div id="notFoundScreen">
+              <section>
+                <h1>Oops!... That Pokemon isn't captured yet.</h1>
+                <h4>Try searching for another.</h4>
+                <Link to="/app/landing">
+                  <button id="backToPokedex">Back to the pokedex</button>
+                </Link>
+              </section>
+              <section>
+                <img
+                  src="https://media1.giphy.com/media/VdWNHBgPnDudA5F3MM/giphy.gif?cid=6c09b952e1y5i7qiv9yk9g5ijgo1anc0a496g370ogthqwxi&rid=giphy.gif&ct=s"
+                  alt="sadPsyduck"
+                ></img>
+              </section>
+            </div>
+          )
         ) : (
-          <img
-            src="https://c.tenor.com/Hg2Mb_mQdhYAAAAi/pokemon-pokeball.gif"
-            alt="loader"
-          ></img>
+          <>
+            <img
+              src="https://c.tenor.com/Hg2Mb_mQdhYAAAAi/pokemon-pokeball.gif"
+              alt="loader"
+            ></img>
+          </>
         )}
       </div>
     </>
