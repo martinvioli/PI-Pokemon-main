@@ -9,7 +9,7 @@ export default function CardMaker(props) {
         // EL SLICE VA A IR TAJANDO DE A 12 POKEMONES, GRACIAS AL SHOWPOKES QUE VA SUMANDO O RESTANDO Y DETECTA LOS LIMITES, Y POR CADA POKEMON GENERA UNA CARD CON IMAGEN, NOMBRE, TIPOS, Y BOTON PARA DETALLES.
         .slice(props.showPokes, props.showPokes + 12)
         .map((e) => (
-          <div className="card">
+          <div className="card" key={e.ID}>
             {e.Imagen ? (
               <img src={e.Imagen} alt="cardImg" />
             ) : (
@@ -56,7 +56,7 @@ export default function CardMaker(props) {
         ? props.pokemons
             .slice(props.showPokes, props.showPokes + 12)
             .map((e) => (
-              <div className="card">
+              <div className="card" key={e.ID}>
                 {e.Imagen ? (
                   <img src={e.Imagen} alt="cardImg" />
                 ) : (

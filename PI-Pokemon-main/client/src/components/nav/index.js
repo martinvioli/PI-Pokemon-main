@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./styles.css";
-import { Link, NavLink, Outlet } from "react-router-dom";
-import { loadPokemonsAsync } from "../../redux/actions";
-import { connect } from "react-redux";
+import { Link, Outlet } from "react-router-dom";
 
 export default function Nav(props) {
   //MI STATE SEARCHQUERY ME SIRVE PARA TENER UNA INPUT CONTROLADA. CUANDO LE DE AL BOTON DE GO!, VA A HACER UN LINK AL POKEMONDETAIL CON EL VALOR DE LA SEARCHQUERY.

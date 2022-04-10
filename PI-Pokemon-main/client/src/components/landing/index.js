@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.css";
-import { Link } from "react-router-dom";
 import {
   filterType,
   loadPokemonsAsync,
@@ -67,7 +66,9 @@ export function Landing(props) {
               {props.types
                 ? props.types.map((e) => (
                     // PARA EL DISPATCH UTILIZO EL VALUE, QUE ES EL NOMBRE DEL TYPE.
-                    <option value={e.Nombre}>{e.Nombre}</option>
+                    <option value={e.Nombre} key={e.ID}>
+                      {e.Nombre}
+                    </option>
                   ))
                 : null}
             </select>

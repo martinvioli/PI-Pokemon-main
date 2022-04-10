@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import styles from "./styles.css";
 import { addPokemon, loadTypesAsync } from "../../redux/actions";
-import { Link } from "react-router-dom";
 
 export function Creator(props) {
   // Cargo los tipos ni bien renderizo la pagina.
@@ -24,9 +23,9 @@ export function Creator(props) {
   let [completed, setCompleted] = useState(false);
 
   //Regexp para admitir solo letras y espacios
-  const [regexpNombre, setRegExpNom] = useState(/^[a-zA-Z\s]+$/);
+  const [regexpNombre] = useState(/^[a-zA-Z\s]+$/);
   //Regexp para admitir solo numeros del 1 al 99 inclusive.
-  const [regexpNumeros, setRegExpNum] = useState(/^(99|[1-9][0-9]?)$/);
+  const [regexpNumeros] = useState(/^(99|[1-9][0-9]?)$/);
 
   function addToDB() {
     fetch("http://localhost:3001/pokemons", {
@@ -169,7 +168,10 @@ export function Creator(props) {
               {props.types
                 ? props.types.map((e) => (
                     // En value guardo en forma de string los datos de cada tipo, con nombre y ID para luego poder hacer tanto el post como el refresh del state.
-                    <option value={`{"ID":"${e.ID}","Nombre":"${e.Nombre}"}`}>
+                    <option
+                      key={e.ID}
+                      value={`{"ID":"${e.ID}","Nombre":"${e.Nombre}"}`}
+                    >
                       {e.Nombre}
                     </option>
                   ))
@@ -201,6 +203,7 @@ export function Creator(props) {
                       .map((e) => (
                         // En value guardo en forma de string los datos de cada tipo, con nombre y ID para luego poder hacer tanto el post como el refresh del state.
                         <option
+                          key={e.ID}
                           value={`{"ID":"${e.ID}","Nombre":"${e.Nombre}"}`}
                         >
                           {e.Nombre}

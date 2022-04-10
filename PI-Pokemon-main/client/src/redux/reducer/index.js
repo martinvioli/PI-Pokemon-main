@@ -4,7 +4,6 @@ import {
   LOAD_TYPES,
   SORT_BYNAME,
   SORT_BYSTRENGTH,
-  FILTER_KIND,
   FILTER_TYPE,
 } from "../actions";
 
