@@ -5,6 +5,7 @@ import {
   SORT_BYNAME,
   SORT_BYSTRENGTH,
   FILTER_TYPE,
+  FILTER_STR99,
 } from "../actions";
 
 // STATE
