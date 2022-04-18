@@ -13,12 +13,12 @@ export default function Detail(props) {
   //EL FETCH LO HACE NI BIEN SE CARGA LA PAGINA DE DETALLES, CON EL ID O NOMBRE PROVEIDO. Y ADEMAS, EN EL USEEFFECT LE DIGO QUE ESTE ATENTO A ID Y NAME, YA QUE DE ESTA MANERA, SI ANTERIORMENTE ENTRE VIA ID, Y LUEGO ENTRO VIA NOMBRE, DETECTE QUE UNO DE LOS 2 PARAMS SE CAMBIO, Y RENDERIZE SEGUN EL QUE SE ESTA USANDO.
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:3001/pokemons/${id}`)
+      fetch(`https://pokemonpimv.herokuapp.com/pokemons/${id}`)
         .then((response) => response.json())
         .then((data) => setPokemonDetail((pokemonDetail = data)));
     }
     if (name) {
-      fetch(`http://localhost:3001/pokemons/?name=${name}`)
+      fetch(`https://pokemonpimv.herokuapp.com/pokemons/?name=${name}`)
         .then((response) => response.json())
         .then((data) => setPokemonDetail((pokemonDetail = data)));
     }

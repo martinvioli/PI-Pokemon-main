@@ -5,7 +5,10 @@ import { addPokemon, loadTypesAsync } from "../../redux/actions";
 
 export function Creator(props) {
   // Cargo los tipos ni bien renderizo la pagina.
-  useEffect(() => props.loadTypesAsync("http://localhost:3001/types"), []);
+  useEffect(
+    () => props.loadTypesAsync("https://pokemonpimv.herokuapp.com/types"),
+    []
+  );
 
   // Creo el state que me va a servir para: cargar la DB, y cargar el fake.
   const [state, setState] = useState({
@@ -28,7 +31,7 @@ export function Creator(props) {
   const [regexpNumeros] = useState(/^(99|[1-9][0-9]?)$/);
 
   function addToDB() {
-    fetch("http://localhost:3001/pokemons", {
+    fetch("https://pokemonpimv.herokuapp.com/pokemons", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       // lo paso a JSON para que se procese correctamente y se cargue a la DB...

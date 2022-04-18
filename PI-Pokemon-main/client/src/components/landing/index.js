@@ -13,12 +13,15 @@ import CardMaker from "./cardMaker";
 export function Landing(props) {
   // ESTE USEEFFECT ME VA A CARGAR LOS POKEMONES CADA VEZ QUE ENTRE A LA PAGINA DESDE 0.
   useEffect(
-    () => props.loadPokemonsAsync("http://localhost:3001/pokemons"),
+    () => props.loadPokemonsAsync("https://pokemonpimv.herokuapp.com/pokemons"),
     []
   );
 
   // ESTE USEEFFECT ME VA A CARGAR LOS TIPOS PARA PODER GENERAR EL FILTER DE TYPES, CADA VEZ QUE ENTRE A LA PAGINA DESDE 0.
-  useEffect(() => props.loadTypesAsync("http://localhost:3001/types"), []);
+  useEffect(
+    () => props.loadTypesAsync("https://pokemonpimv.herokuapp.com/types"),
+    []
+  );
 
   // SHOWPOKES VA A SER MI VALOR DINAMICO QUE VOY A USAR DE REFERENCIA PARA IR MOSTRANDO DE A 12 POKEMONES CADA PAGINA.
   var [showPokes, setShowPokes] = useState(0);
